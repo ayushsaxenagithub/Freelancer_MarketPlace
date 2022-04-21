@@ -1,0 +1,46 @@
+.alert {
+  display: block;
+  position: fixed;
+  top: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  gap: 3rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: 3px;
+  border: 1px solid #000000;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  z-index: 5;
+  width: 50rem;
+}
+
+.alert,
+.alert > .alert__message {
+  background-color: #e6faff;
+  color: #5aa5b9;
+  font-size: 1.4rem;
+  font-weight: 1rem;
+}
+
+.alert .alert--error,
+.alert.alert--error > .alert__message {
+  background-color: var(--color-error-bg);
+  color: var(--color-error);
+}
+
+.alert.alert--success,
+.alert.alert--success > .alert__message {
+  background-color: var(--color-success-bg);
+  color: var(--color-success);
+}
+
+.alert > .alert__close {
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  outline: transparent;
+  font-size: 2rem;
+  transition: var(--generic-transition);
+}

@@ -1,0 +1,44 @@
+{% extends 'main.html' %} {% block content %}
+
+<!-- Main Section -->
+<main class="project-form">
+  <div class="project-form-card">
+    <div class="project-form-wrapper">
+      <a class="btn goback" href="{% url 'account' %}">Go back</a>
+      <br />
+      <form class="form" method="POST" enctype="multipart/form-data">
+        {% csrf_token %} {% for field in form %}
+        <!-- Input:Text -->
+        <div class="form-field">
+          <label for="formInput#text">{{field.label}}</label>
+          {{field}}
+        </div>
+        {% endfor %}
+
+        <div class="tags-div">
+          {% for tag in project.tags.all %}
+          <div
+            class="tags project-tag"
+            data-tag="{{tag.id}}"
+            data-project="{{project.id}}"
+          >
+            {{tag.name}} &#215;
+          </div>
+
+          {% endfor %}
+        </div>
+        <div class="form__field">
+          <label for="formInput#text">Tags</label>
+          <textarea
+            class="input form-textarea"
+            name="newtags"
+            placeholder="Add tags here..."
+          ></textarea>
+        </div>
+        <input class="btn--lg" type="submit" value="Submit" />
+      </form>
+    </div>
+  </div>
+</main>
+
+{% endblock %}

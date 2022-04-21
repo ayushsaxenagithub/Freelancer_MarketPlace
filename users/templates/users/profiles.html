@@ -1,0 +1,67 @@
+{% extends 'main.html' %} {% load static %} {% block content %}
+
+<!-- Main Section -->
+<main class="home">
+  <section class="hero-section">
+    <div class="container">
+      <div class="img-container-hero">
+        <img src="{% static 'images/logo.gif' %}" alt="" />
+      </div>
+
+      <div class="hero-section__box">
+        <h2>HIRE<br /><span class="dev-span">DEVELOPERS</span></h2>
+
+        <h2>FROM ALL OVER <br /><span class="dev-span">THE WORLD</span></h2>
+      </div>
+
+      <div class="hero-section__search">
+        <form id="searchForm" class="form-n form-n-mobile" action="{% url 'profiles' %}#scrollhere" method="get">
+          <div class="form-row">
+            <label for="formInput#search" class="hero-form-label">Search Developers
+            </label>
+            <input class="form-input input--text" id="formInput#search" type="text" name="search_query"
+              value="{{search_query}}" placeholder="Search by developer name" />
+          </div>
+
+          <input class="btn--lg" type="submit" value="Search" />
+        </form>
+      </div>
+    </div>
+  </section>
+  <!-- Search Result: DevList -->
+  <section class="devlist" id="scrollhere">
+    <p class="devlist-heading">Developers on our platform</p>
+
+    <div class="profiles-container">
+      <div class="profiles-main-container">
+        {% for profile in profiles %}
+        <div class="card">
+          <div class="card__dev">
+            <a href="{% url 'user-profile' profile.id %}" class="card__body">
+              <div class="dev__profile">
+                <img class="avatar avatar--md" src="{{ profile.imageURL }}" alt="image" />
+                <div class="dev__meta">
+                  <h3>{{profile.name}}</h3>
+                  <h5>{{profile.short_intro|slice:"60"}}</h5>
+                </div>
+              </div>
+              <p class="dev__info">{{profile.bio|slice:"150"}}</p>
+              <div class="dev__skills">
+                {% for skill in profile.skill_set.all|slice:"3" %}
+                <span class="tag tag--pill tag--main">
+                  <small>{{skill}}</small>
+                </span>
+                {% endfor %}
+              </div>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {% include 'pagination.html' with queryset=profiles custom_range=custom_range%}
+</main>
+
+{% endblock content %}

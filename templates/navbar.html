@@ -1,0 +1,37 @@
+<header id="header">
+  <nav id="header__main-nav">
+    <div class="header__main-nav--hamburger">
+      <div class="line line-1"></div>
+      <div class="line line-2"></div>
+      <div class="line line-3"></div>
+    </div>
+    <!-- <div class="name">KSHITIZ</div> -->
+    <ul class="header__main-nav--links">
+      <li class="header__menu__item logo">
+        <a href="{% url 'profiles' %}">FIND<span class="logo__span">DEV</span> </a>
+      </li>
+
+      <li class="header__menu__item">
+        <a href="{% url 'profiles' %}">Developers</a>
+      </li>
+      <li class="header__menu__item">
+        <a href="{% url 'projects' %}">Projects</a>
+      </li>
+      {% if request.user.is_authenticated %}
+      <li class="header__menu__item">
+        <a href="{% url 'inbox' %}">Inbox</a>
+      </li>
+      <li class="header__menu__item">
+        <a href="{% url 'account' %}">Account</a>
+      </li>
+      <li class="header__menu__item">
+        <a href="{% url 'logout' %}" class="btn btn--sub">Logout</a>
+      </li>
+      {% else %}
+      <li class="header__menu__item">
+        <a href="{% url 'login' %}" class="btn btn--sub">Login/Sign Up</a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+</header>

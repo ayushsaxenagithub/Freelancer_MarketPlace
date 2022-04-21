@@ -1,0 +1,29 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+<!-- Main Section -->
+<main class="auth">
+    <div class="auth-card">
+        <div class="formWrapper">
+            <a class="backButton btn" href="{% url 'account' %}">go back</a>
+            <br>
+
+            <form class="form" method="POST" action="{% url 'edit-account' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {% for field in form %}
+                <div class="form__field">
+                    <label for="formInput#text">{{field.label}}</label>
+                    {{field}}
+                </div>
+                {% endfor %}
+
+                <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
+            </form>
+        </div>
+    </div>
+</main>
+
+{% endblock content %}

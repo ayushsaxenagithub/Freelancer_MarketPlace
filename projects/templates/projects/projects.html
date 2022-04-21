@@ -1,0 +1,67 @@
+{% extends 'main.html' %} {% block content %} {%load static%}
+<!-- Main Section -->
+<main class="projects">
+  <section class="hero-section-projects">
+    <div class="container-projects-header">
+      <div class="img-container-projects">
+        <img src="{% static 'images/untitled.png' %}" alt="" />
+      </div>
+      <div class="hero-section--title">
+        <h3>SEARCH FOR VARIOUS <span>PROJECTS</span></h3>
+      </div>
+
+      <div class="projects-section-search">
+        <form id="searchForm" class="projects-form form" action="{% url 'projects' %}#scrollhere" method="get">
+          <div class="form__field">
+            <label for="formInput#search" class="form-label">Search By Projects
+            </label>
+            <input class="form-input input--text" id="formInput#search" type="text" name="search_query"
+              placeholder="Search by Project Title" value="{{search_query}}" />
+          </div>
+
+          <input class="btn btn--sub btn--lg" type="submit" value="Search" />
+        </form>
+      </div>
+    </div>
+  </section>
+  <!-- Search Result: DevList -->
+  <section class="projects-list" id="scrollhere">
+    <p class="devlist-heading">Projects on our platform ↴</p>
+    <div class="projects-container">
+      <div class="grid">
+        {% for project in projects %}
+        <div class="card-projects-container">
+          <div class="card-projects">
+            <a href="{% url 'project' project.id %}" class="project">
+              <img class="projects-thumbnail" src="{{project.imageURL}}" alt="project thumbnail" />
+              <div class="dev-profile">
+                <h3 class="project-title">{{project.title}}</h3>
+                <p>
+                  <a class="project__author" href="{% url 'user-profile' project.owner.id %}">By
+                    {{project.owner.name}}</a>
+                </p>
+                <p class="project--rating">
+                  <span style="font-weight: bold">{{project.vote_ratio}}%</span>
+                  Positive Feedback ({{project.vote_total}})
+                  Vote{{project.vote_total|pluralize:"s"}}
+                </p>
+                <div class="project__tags">
+                  {% for tag in project.tags.all|slice:"3" %}
+                  <span class="tag">
+                    <small>{{tag}}</small>
+                  </span>
+                  {% endfor %}
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  {% include 'pagination.html' with queryset=projects custom_range=custom_range%}
+</main>
+
+{% endblock %}

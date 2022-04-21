@@ -1,0 +1,110 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<!-- Main Section -->
+
+<main class="settingsPage">
+  <div class="profile-edit">
+    <a class="btn-light" href="{% url 'edit-account' %}"><i class="im im-edit"></i>
+      Edit</a>
+    <img class="avatar" src="{{profile.imageURL}}" />
+    <h2>{{profile.name}}</h2>
+    <p>{{profile.short_intro}}</p>
+    <p class="dev__location">Based in {{profile.location}}</p>
+
+    <ul class="dev__social">
+      {% if profile.social_github %}
+      <li>
+        <a title="Github" href="{{profile.social_github}}" target="_blank"><i class="im im-github"></i></a>
+      </li>
+      {% endif %}
+      {% if profile.social_twitter %}
+      <li>
+        <a title="Twitter" href="{{profile.social_twitter}}" target="_blank"><i class="im im-twitter"></i></a>
+      </li>
+      {% endif %}
+
+      {% if profile.social_linkedin %}
+      <li>
+        <a title="LinkedIn" href="{{profile.social_linkedin}}" target="_blank"><i class="im im-linkedin"></i></a>
+      </li>
+      {% endif %}
+
+      {% if profile.social_website %}
+      <li>
+        <a title="Personal Website" href="{{profile.social_website}}" target="_blank"><i class="im im-globe"></i></a>
+      </li>
+      {% endif %}
+
+    </ul>
+  </div>
+
+
+  {% comment %} kdmkddk {% endcomment %}
+
+  <div class="dev-info">
+    <h3 class="devInfo__title">About Me</h3>
+    <p class="devInfo__about">{{profile.bio}}</p>
+  </div>
+  {% comment %} {% endcomment %}
+  <div class="skills-edit">
+
+    <div class="settings">
+      <h3 class="settings__title">Skills</h3>
+      <a class="btn-light" href="{% url 'create-skill' %}">
+        + Add Skill</a>
+    </div>
+
+    <div class="settings__div">
+      {% for skill in skills %}
+      <div>
+        <div class="settings__divInfo">
+          <h2>{{skill.name}}</h2>
+          <p>
+            {{skill.description}}
+          </p>
+        </div>
+        <div class="settings__divActions">
+          <a class="btn-light" href="{% url 'update-skill' skill.id %}"><i class="im im-edit"></i> Edit</a>
+          <a class="btn-light" href="{% url 'delete-skill' skill.id %}?next=/account"><i
+              class="im im-x-mark-circle-o"></i>
+            Delete</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+
+  <div class="projects-edit">
+    <div class="settings">
+      <h2 class="settings__title">Projects</h2>
+      <a class="btn-light" href="{% url 'create-project' %}"><i class="im im-plus"></i> Add Project</a>
+    </div>
+
+    <div class="settings__div">
+      {% for project in projects %}
+      <div>
+        <div class="project-thumbnail">
+          <a href="{% url 'project' project.id %}"><img src="{{project.imageURL}}" alt="Project Thumbnail" /></a>
+        </div>
+        <div class="settings__divInfo">
+          <h2><a href="{% url 'project' project.id %}">{{project.title}}</a></h2>
+          <p>{{project.description|slice:"150"}}</p>
+        </div>
+        <div class="settings__divActions">
+          <a class="btn-light" href="{% url 'update-project' project.id %}"><i class="im im-edit"></i> Edit</a>
+          <a class="btn-light" href="{% url 'delete-project'  project.id %}?next=/account"><i
+              class="im im-x-mark-circle-o"></i>
+            Delete</a>
+        </div>
+      </div>
+      <br>
+      {% endfor %}
+
+    </div>
+
+</main>
+{% endblock %}

@@ -1,0 +1,34 @@
+.inbox {
+  justify-content: center;
+  display: flex;
+}
+.content-box {
+  margin-top: 2.5rem;
+  border: 0.25rem rgb(0, 0, 0) solid;
+  background-color: rgb(34, 174, 255);
+  padding: 2rem;
+  border-radius: 2rem;
+}
+
+.message {
+  font-size: 2rem;
+  border: 0.22rem solid rgb(99, 0, 0);
+  padding: 0.5rem;
+  background-color: rgba(255, 71, 71, 0.096);
+  margin: 1rem;
+  border-radius: 2rem;
+}
+
+/* messagepagw */
+
+.messagePage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+.messages {
+  width: 100%;
+  height: 100%;
+}

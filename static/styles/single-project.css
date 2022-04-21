@@ -1,0 +1,160 @@
+.singleProject {
+  background: #1fa2ff; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #a6ffcb,
+    #12d8fa,
+    #1fa2ff
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #a6ffcb,
+    #12d8fa,
+    #1fa2ff
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  grid-template-rows: min-content min-content min-content;
+  padding: 2.5rem 8rem;
+
+  grid-template-areas: "tech image" ". aboutProject" ". feedback";
+  gap: 1rem;
+}
+.singleProject-title {
+  margin-bottom: 3rem;
+  font-size: 3rem;
+}
+.singleProject-preview {
+  width: 100%;
+  max-width: 40rem;
+  max-height: 30rem;
+  object-fit: cover;
+  border-radius: 3rem;
+}
+
+.singleProject-img-div {
+  grid-area: image;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.singleProject-tools-div {
+  grid-area: tech;
+  background: #00c9ff; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #92fe9d,
+    #00c9ff
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #92fe9d,
+    #00c9ff
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1rem;
+  border-radius: 2rem;
+}
+
+.singleProject-toolStack {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 2rem;
+}
+
+.singleProject-toolStack-links {
+  display: flex;
+}
+
+.singleProject-user-div {
+  grid-area: aboutProject;
+}
+.singleProject-info {
+  background: #81ecff; /* fallback for old browsers */
+
+  padding: 2rem;
+  border-radius: 2.5rem;
+}
+.singleProject-subtitle {
+  text-align: center;
+  font-size: 3rem;
+  margin: 1rem;
+}
+.comments {
+  grid-area: feedback;
+  background: #e4d8df50;
+  padding: 1rem;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.singleProject-form-field {
+  background: #7bffff1c; /* fallback for old browsers */
+
+  padding: 0;
+  margin: 0;
+}
+.avatar--md {
+  width: 5rem;
+  height: 5rem;
+  margin: 1rem;
+}
+.comment-details {
+  display: flex;
+  flex-direction: column;
+  padding: 0.25rem;
+  margin: 0.25rem;
+}
+.comment {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid black;
+  border-radius: 2rem;
+  background: #e4d8df1e;
+}
+@media only screen and (max-width: 650px) {
+  .singleProject {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content min-content min-content;
+    padding: 2.5rem 2.5rem;
+
+    grid-template-areas: "tech" "image" "aboutProject" "feedback";
+    gap: 1rem;
+  }
+
+  .singleProject-preview {
+    width: 15rem;
+    max-height: 15rem;
+    object-fit: cover;
+    border-radius: 1.5rem;
+  }
+  .singleProject-toolStack {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 2rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .singleProject-tools-div {
+    align-items: center;
+    justify-content: center;
+  }
+  .singleProject-toolStack-links {
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .singleProject-title {
+    text-align: center;
+  }
+}

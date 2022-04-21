@@ -1,0 +1,128 @@
+{% extends 'main.html' %} {% block content %}
+
+<!-- Main Section -->
+
+<main class="user-profile-main">
+  <div class="user-intro">
+    <div class="user-intro-div">
+      <img class="avatar" src="{{ profile.imageURL }}" />
+      <div>
+        <h2 class="dev__name">{{profile.name}}</h2>
+        <p class="dev__title">{{profile.short_intro}}</p>
+        <p class="dev__location">Based in {{profile.location}}</p>
+        <ul class="dev__social">
+          {% if profile.social_github %}
+          <li>
+            <a title="Github" href="{{profile.social_github}}" target="_blank"
+              ><i class="im im-github"></i
+            ></a>
+          </li>
+          {% endif %} {% if profile.social_twitter %}
+          <li>
+            <a title="Twitter" href="{{profile.social_twitter}}" target="_blank"
+              ><i class="im im-twitter"></i
+            ></a>
+          </li>
+          {% endif %} {% if profile.social_linkedin %}
+          <li>
+            <a
+              title="LinkedIn"
+              href="{{profile.social_linkedin}}"
+              target="_blank"
+              ><i class="im im-linkedin"></i
+            ></a>
+          </li>
+          {% endif %} {% if profile.social_website %}
+          <li>
+            <a
+              title="Personal Website"
+              href="{{profile.social_website}}"
+              target="_blank"
+              ><i class="im im-globe"></i
+            ></a>
+          </li>
+          {% endif %}
+        </ul>
+        {% if request.user.profile.id != profile.id %}
+        <a href="{% url 'create-message' profile.id %}" class="btn-light"
+          >Send Message
+        </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  {% comment %} about {% endcomment %}
+  <div class="devInfo-profile">
+    <h3 class="devInfo-profile__title">About Me</h3>
+    <p class="devInfo-profile__about">{{profile.bio}}</p>
+  </div>
+
+  {% comment %} about {% endcomment %} {% comment %} skilss {% endcomment %}
+
+  <div class="devInfo-skills">
+    {% if topSkills%}
+    <h3 class="devInfo-skills__title">Skills</h3>
+    <div class="devInfo-skills__skills">
+      {% for skill in topSkills %}
+      <div class="devSkill">
+        <h4 class="devSkill__title">{{skill.name}}</h4>
+        <p class="devSkill__info">{{skill.description}}</p>
+      </div>
+      {% endfor %} {% endif %} {% if otherSkills %}
+      <h3 class="devInfo-skills__subtitle">Other Skills</h3>
+      <div class="devInfo-title__otherSkills">
+        {% for skill in otherSkills %}
+        <div class="other-skills">
+          <div>{{skill}}</div>
+        </div>
+        {% endfor %} {% endif %}
+      </div>
+    </div>
+  </div>
+  {% comment %} skills end{% endcomment %} {% comment %} proejcts starts
+  {%endcomment %}
+  <div class="devInfo-projects">
+    <h3 class="devInfo-title">Projects</h3>
+    <div class="devInfo-grid">
+      {% for project in profile.project_set.all|slice:"3" %}
+      <div class="devInfo-projects-container">
+        <div class="devInfo-projects-card">
+          <a href="{% url 'project' project.id %}" class="project">
+            <img
+              class="devInfo-projects-thumbnail"
+              src="{{project.imageURL}}"
+              alt="project thumbnail"
+            />
+            <div class="devInfo-projects-card-body">
+              <h3 class="project__title">{{project.title}}</h3>
+              <p>
+                <a
+                  class="devInfo-projects-card-title"
+                  href="{% url 'user-profile' project.owner.id %}"
+                  >By {{project.owner.name}}</a
+                >
+              </p>
+              <p class="devInfo-projects-rating">
+                <span style="font-weight: bold">{{project.vote_ratio}}%</span>
+                Postitive Feedback ({{project.vote_total}}
+                Vote{{project.vote_total|pluralize:"s"}})
+              </p>
+              <div class="devInfo-projects-tags">
+                {% for tag in project.tags.all|slice:"3" %}
+                <span class="devInfo-tag">
+                  <p>{{tag}}</p>
+                </span>
+                {% endfor %}
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% comment %} end of prohects {% endcomment %}
+</main>
+
+{% endblock content %}
