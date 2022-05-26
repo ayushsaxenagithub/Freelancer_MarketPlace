@@ -86,6 +86,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'find_dev.wsgi.application'
+# WSGI_APPLICATION = 'wsgi.application'
 
 
 # Database
